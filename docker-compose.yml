@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pagescms
+      POSTGRES_PASSWORD: pagescms
+      POSTGRES_DB: pagescms
+    ports:
+      - "5432:5432"
+    volumes:
+      - pagescms-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pagescms -d pagescms"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  cms:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://pagescms:pagescms@db:5432/pagescms
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - pagescms-node-modules:/app/node_modules
+    command: sh -c "npm run db:migrate && npm run dev"
+
+volumes:
+  pagescms-db:
+  pagescms-node-modules:
