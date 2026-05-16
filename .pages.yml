@@ -7,12 +7,21 @@ actions:
     label: Inhalte pruefen
     workflow: pages-cms-action.yml
     ref: current
+  - name: deploy-site
+    label: Site deployen
+    workflow: deploy-pages.yml
+    ref: current
 
 content:
   - name: pages
     label: Seiten
     type: collection
     path: docs
+    exclude:
+      - _config.yml
+      - _layouts/**
+      - assets/**
+      - media/**
     format: yaml-frontmatter
     filename: "{primary}.md"
     fields:
