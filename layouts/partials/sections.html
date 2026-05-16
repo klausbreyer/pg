@@ -1,0 +1,38 @@
+{{ with . }}
+  <div class="sections">
+    {{ range . }}
+      {{ $type := .type }}
+      {{ if eq $type "hero" }}
+        <section class="section hero">
+          <div>
+            <p class="eyebrow">Hero Block</p>
+            <h2>{{ .title }}</h2>
+            {{ with .text }}<p>{{ . }}</p>{{ end }}
+          </div>
+          {{ with .image }}
+            <img src="{{ strings.TrimPrefix "/" . | relURL }}" alt="">
+          {{ end }}
+        </section>
+      {{ else if eq $type "text" }}
+        <section class="section text-block">
+          <h2>{{ .title }}</h2>
+          {{ with .body }}{{ . | markdownify }}{{ end }}
+        </section>
+      {{ else if eq $type "image" }}
+        <section class="section image-block">
+          {{ with .title }}<h2>{{ . }}</h2>{{ end }}
+          <img src="{{ strings.TrimPrefix "/" .image | relURL }}" alt="">
+          {{ with .caption }}<p class="caption">{{ . }}</p>{{ end }}
+        </section>
+      {{ else if eq $type "cta" }}
+        <section class="section cta">
+          <h2>{{ .title }}</h2>
+          {{ with .text }}<p>{{ . }}</p>{{ end }}
+          {{ if and .url .button }}
+            <a class="button" href="{{ .url }}">{{ .button }}</a>
+          {{ end }}
+        </section>
+      {{ end }}
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,5 +1,6 @@
 {{ define "main" }}
   <article>
     {{ .Content }}
+    {{ partial "sections.html" .Params.sections }}
   </article>
 {{ end }}

@@ -27,6 +27,66 @@ content:
       - name: description
         label: Beschreibung
         type: text
+      - name: sections
+        label: Sektionen
+        type: block
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        blocks:
+          - name: hero
+            label: Hero
+            fields:
+              - name: title
+                label: Titel
+                type: string
+                required: true
+              - name: text
+                label: Text
+                type: text
+              - name: image
+                label: Bild
+                type: image
+          - name: text
+            label: Textblock
+            fields:
+              - name: title
+                label: Titel
+                type: string
+                required: true
+              - name: body
+                label: Inhalt
+                type: rich-text
+          - name: image
+            label: Bildblock
+            fields:
+              - name: title
+                label: Titel
+                type: string
+              - name: image
+                label: Bild
+                type: image
+                required: true
+              - name: caption
+                label: Bildunterschrift
+                type: text
+          - name: cta
+            label: Call to Action
+            fields:
+              - name: title
+                label: Titel
+                type: string
+                required: true
+              - name: text
+                label: Text
+                type: text
+              - name: url
+                label: Link
+                type: string
+              - name: button
+                label: Button Text
+                type: string
       - name: body
         label: Inhalt
         type: rich-text

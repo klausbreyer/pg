@@ -3,13 +3,18 @@ locale: de-DE
 title: pg
 params:
   description: Pages CMS Projekt fuer GitHub.
-contentDir: docs
-staticDir:
-  - static
-  - media
 disableKinds:
   - taxonomy
   - term
+
+module:
+  mounts:
+    - source: docs
+      target: content
+    - source: static
+      target: static
+    - source: media
+      target: static/media
 
 caches:
   images:
