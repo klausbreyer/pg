@@ -1,8 +1,0 @@
-title: pg
-description: Pages CMS Projekt fuer GitHub.
-
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default

@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
+    <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+    <link rel="stylesheet" href="{{ "assets/style.css" | relURL }}">
+  </head>
+  <body>
+    <main class="page">
+      {{ block "main" . }}{{ end }}
+    </main>
+  </body>
+</html>

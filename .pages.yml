@@ -17,11 +17,6 @@ content:
     label: Seiten
     type: collection
     path: docs
-    exclude:
-      - _config.yml
-      - _layouts/**
-      - assets/**
-      - media/**
     format: yaml-frontmatter
     filename: "{primary}.md"
     fields:

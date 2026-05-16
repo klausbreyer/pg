@@ -5,8 +5,9 @@ Pages CMS Projekt fuer GitHub.
 ## Struktur
 
 - `.pages.yml`: Pages CMS Konfiguration
-- `.github/workflows/deploy-pages.yml`: Deployment nach GitHub Pages
-- `docs/`: editierbare Seiten
+- `.github/workflows/deploy-pages.yml`: Hugo Deployment nach GitHub Pages
+- `hugo.yaml`: Hugo Konfiguration
+- `docs/`: editierbare Hugo Inhalte
 - `media/`: Upload-Ziel fuer Bilder und Dateien
 
 ## Nutzung mit Pages CMS
@@ -19,6 +20,6 @@ Pages CMS Projekt fuer GitHub.
 
 ## Deployment
 
-Pushes auf `main` deployen automatisch nach GitHub Pages. In Pages CMS gibt es zusaetzlich den Button `Site deployen`.
+Pushes auf `main` bauen die Seite mit Hugo und deployen automatisch nach GitHub Pages. In Pages CMS gibt es zusaetzlich den Button `Site deployen`.
 
 Hinweis: GitHub Pages fuer private Repositories braucht einen GitHub Plan, der private Pages erlaubt. Mit GitHub Free funktioniert das Deployment, sobald das Repository oeffentlich ist.

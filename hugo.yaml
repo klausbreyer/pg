@@ -1,0 +1,21 @@
+baseURL: https://klausbreyer.github.io/pg/
+locale: de-DE
+title: pg
+params:
+  description: Pages CMS Projekt fuer GitHub.
+contentDir: docs
+staticDir:
+  - static
+  - media
+disableKinds:
+  - taxonomy
+  - term
+
+caches:
+  images:
+    dir: :cacheDir/images
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: false
