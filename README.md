@@ -20,6 +20,11 @@ Pages CMS Projekt fuer GitHub.
 
 ## Deployment
 
-Pushes auf `main` bauen die Seite mit Hugo und deployen automatisch nach GitHub Pages. In Pages CMS gibt es zusaetzlich den Button `Site deployen`.
+Einmalig in GitHub aktivieren:
+
+1. Oeffne `Settings` > `Pages`.
+2. Setze `Source` auf `GitHub Actions`.
+
+Danach bauen Pushes auf `main` die Seite mit Hugo und deployen automatisch nach GitHub Pages. In Pages CMS gibt es zusaetzlich den Button `Site deployen`.
 
 Hinweis: GitHub Pages fuer private Repositories braucht einen GitHub Plan, der private Pages erlaubt. Mit GitHub Free funktioniert das Deployment, sobald das Repository oeffentlich ist.
