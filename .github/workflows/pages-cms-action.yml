@@ -1,0 +1,52 @@
+name: Pages CMS Action
+
+on:
+  workflow_dispatch:
+    inputs:
+      payload:
+        description: Pages CMS payload as JSON
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content:
+    name: Validate content
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Show Pages CMS payload
+        env:
+          PAGES_CMS_PAYLOAD: ${{ inputs.payload }}
+        run: |
+          echo "$PAGES_CMS_PAYLOAD" | jq .
+
+      - name: Validate Pages CMS config
+        run: |
+          ruby -e 'require "yaml"; YAML.load_file(".pages.yml"); puts "Pages CMS config is valid YAML"'
+
+      - name: Validate Markdown frontmatter
+        run: |
+          ruby <<'RUBY'
+          require "date"
+          require "yaml"
+
+          Dir.glob("docs/**/*.md").each do |path|
+            contents = File.read(path)
+            unless contents.start_with?("---\n")
+              abort("#{path} is missing YAML frontmatter")
+            end
+
+            frontmatter = contents.split(/^---\s*$/, 3)[1]
+            data = YAML.safe_load(frontmatter, permitted_classes: [Date, Time], aliases: true) || {}
+
+            abort("#{path} is missing title") if data["title"].to_s.strip.empty?
+          end
+
+          puts "Markdown content is valid"
+          RUBY

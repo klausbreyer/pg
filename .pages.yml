@@ -2,6 +2,12 @@ media:
   input: media
   output: /media
 
+actions:
+  - name: validate-content
+    label: Inhalte pruefen
+    workflow: pages-cms-action.yml
+    ref: current
+
 content:
   - name: pages
     label: Seiten
